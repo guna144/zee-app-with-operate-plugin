@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0bskqwj" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Zeebe Modeler" exporterVersion="0.6.2">
   <bpmn:process id="SubRequest_Process" name="SubRequest_Process" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1" name="SubReq_OPENED">
-      <bpmn:extensionElements>
-        <zeebe:ioMapping>
-          <zeebe:output source="output-1" target="output-1" />
-          <zeebe:output source="output-2" target="output-2" />
-          <zeebe:output source="KEY_SUBREQ_PROCESSING_ID" target="KEY_SUBREQ_PROCESSING_ID" />
-          <zeebe:output source="KEY_SUBREQ_INPRO_ID" target="KEY_SUBREQ_INPRO_ID" />
-          <zeebe:output source="KEY_SUBREQ_COMS_ID" target="KEY_SUBREQ_COMS_ID" />
-          <zeebe:output source="KEY_SUBREQ_CLOSED_ID" target="KEY_SUBREQ_CLOSED_ID" />
-          <zeebe:output source="KEY_RAISE_INCIDENT" target="KEY_RAISE_INCIDENT" />
-        </zeebe:ioMapping>
-      </bpmn:extensionElements>
-      <bpmn:outgoing>SequenceFlow_0xw1pk9</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_1r6q22w" />
-    </bpmn:startEvent>
     <bpmn:serviceTask id="ServiceTask_0twru8u" name="RAISE INCIDENT">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="error-event" />
@@ -83,6 +68,21 @@
     <bpmn:sequenceFlow id="SequenceFlow_0tjwha8" sourceRef="SubProcess_1lckchq" targetRef="ServiceTask_0180pzc" />
     <bpmn:sequenceFlow id="SequenceFlow_18lurr7" sourceRef="BoundaryEvent_0qwz8dv" targetRef="ServiceTask_0twru8u" />
     <bpmn:sequenceFlow id="SequenceFlow_1s1rr02" sourceRef="ServiceTask_0twru8u" targetRef="EndEvent_1hzk5ka" />
+    <bpmn:startEvent id="StartEvent_1" name="SubReq_OPENED">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="output-1" target="output-1" />
+          <zeebe:output source="output-2" target="output-2" />
+          <zeebe:output source="KEY_SUBREQ_PROCESSING_ID" target="KEY_SUBREQ_PROCESSING_ID" />
+          <zeebe:output source="KEY_SUBREQ_INPRO_ID" target="KEY_SUBREQ_INPRO_ID" />
+          <zeebe:output source="KEY_SUBREQ_COMS_ID" target="KEY_SUBREQ_COMS_ID" />
+          <zeebe:output source="KEY_SUBREQ_CLOSED_ID" target="KEY_SUBREQ_CLOSED_ID" />
+          <zeebe:output source="KEY_RAISE_INCIDENT" target="KEY_RAISE_INCIDENT" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_0xw1pk9</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1r6q22w" />
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmn:message id="Message_1r6q22w" name="MSG_SUBREQ_OPENED" />
   <bpmn:message id="Message_1jfaqr5" name="MSG_SUBREQ_PROCESSING">
@@ -112,12 +112,6 @@
   </bpmn:message>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="SubRequest_Process">
-      <bpmndi:BPMNShape id="StartEvent_1dsfkeu_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="179" y="103" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="154" y="148.5" width="85" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0d32phk_di" bpmnElement="IntermediateCatchEvent_0d32phk">
         <dc:Bounds x="399" y="96" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -217,6 +211,12 @@
         <di:waypoint x="1097" y="273" />
         <di:waypoint x="1097" y="133" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_1dsfkeu_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="154" y="149" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
